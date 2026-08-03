@@ -81,7 +81,7 @@ Growth should happen through richer knowledge, thoughtful architecture, and bett
 
 ## Richer Vocabulary Before More Data Fields
 
-The Living Library prefers richer vocabularies over additional data fields.
+The Living Library uses a small number of well-defined discovery dimensions, each supported by a rich, evolving vocabulary.
 
 When new ideas emerge, the first question should not be:
 
