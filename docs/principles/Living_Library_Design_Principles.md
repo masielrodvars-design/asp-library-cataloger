@@ -115,7 +115,13 @@ Permanent organization teaches children how libraries work.
 
 Curated collections help children discover why libraries matter.
 
+The Living Library should teach children not only how to search for books, but also how to browse, explore, and discover them independently.
+
+Whenever possible, the system should explain how libraries work rather than hiding library organization.  Every interaction should help children build the confidence to navigate any library with curiosity and independence.
+
 The Living Library prepares children not only to use libraries, but to love them.
+
+
 
 # Principle 7
 
@@ -128,6 +134,39 @@ The project should outlive any individual contributor.
 Documentation, software, and knowledge should remain accessible, transparent, and maintainable.
 
 ---
+
+# Principle 8
+
+## Relationships Are the Product
+
+Books are the catalyst.
+
+Technology is the tool.
+
+Relationships are the outcome.
+
+Every feature of the Living Library should strengthen meaningful connections:
+
+- between readers and books
+- between children and families
+- between tutors and students
+- between educators and learning
+- between the Learning Center and the broader community
+
+When faced with competing design choices, the Living Library should favor those that create stronger human connections.
+
+
+# Principle 9
+
+## Meet People Where They Are
+
+The Living Library recognizes that readers and families bring different languages, reading abilities, educational experiences, and levels of confidence.
+
+Rather than expecting people to adapt to the library, the Living Library adapts its communication to help every person connect with books in meaningful ways.
+
+Accessibility includes language, reading level, confidence, and opportunities for conversation—not only technical accommodations.
+
+Every interaction should help people feel welcomed, capable, and included.
 
 # A Living Document
 
