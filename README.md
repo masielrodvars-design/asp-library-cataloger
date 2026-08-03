@@ -1,4 +1,6 @@
-# Small Library Cataloger
+The MFEE Living Library is an AI-powered cataloging and discovery platform that helps connect students, families, educators, and volunteers with books through relationships, community knowledge, and intelligent discovery.# Small Library Cataloger
+
+How do we help every child find the right book at the right moment, with the help of a caring community?
 
 *A smarter way to build and maintain library catalogs for schools, nonprofits, classrooms, and community libraries.*
 
