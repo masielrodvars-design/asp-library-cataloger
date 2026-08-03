@@ -1,4 +1,4 @@
-from cataloger.ai.summary_generator import SummaryGenerator
+from cataloger.enrichment import FakeEnrichmentService
 from cataloger.intelligence import rules
 from cataloger.models.book_profile import BookProfile
 from cataloger.models.recommendation import Recommendation
@@ -7,7 +7,7 @@ from cataloger.models.recommendation import Recommendation
 class IntelligenceEngine:
 
     def __init__(self):
-        self.summary_generator = SummaryGenerator()
+        self.enrichment = FakeEnrichmentService()
 
     def analyze(self, book, metadata):
         """
@@ -26,7 +26,7 @@ class IntelligenceEngine:
 
     def build_book_profile(self, book, metadata):
         """
-        Build a Living Library BookProfile from a book and its metadata.
+        Build a Living Library BookProfile.
         """
 
         recommendation = self.analyze(
@@ -45,10 +45,15 @@ class IntelligenceEngine:
         profile.isbn = book.isbn
 
         #
-        # Summary
+        # Enrichment
         #
 
-        profile.summary = self.summary_generator.generate(
+        profile.summary = self.enrichment.generate_summary(
+            book,
+            metadata,
+        )
+
+        profile.themes = self.enrichment.generate_themes(
             book,
             metadata,
         )
@@ -58,17 +63,5 @@ class IntelligenceEngine:
         #
 
         profile.collection = recommendation.collection_code
-
-        #
-        # Future AI fields
-        #
-
-        # profile.call_number = ...
-        # profile.language = ...
-        # profile.subjects = ...
-        # profile.themes = ...
-        # profile.instructional_supports = ...
-        # profile.representation = ...
-        # profile.community_notes = ...
 
         return profile
