@@ -1,11 +1,14 @@
 from pathlib import Path
 
-from cataloger.analysis.quality import print_quality_report
 from cataloger.excel.reader import load_books
-from cataloger.excel.writer import ExcelWriter
+from cataloger.analysis.quality import print_quality_report
 from cataloger.metadata.engine import MetadataEngine
 from cataloger.intelligence.engine import IntelligenceEngine
+from cataloger.excel.writer import ExcelWriter
 
+from cataloger.story.builder import BookStoryBuilder
+from cataloger.story.formatter import StoryFormatter
+from cataloger.processor import CatalogProcessor
 
 def main():
     # Load books from Excel
@@ -16,6 +19,8 @@ def main():
 
     metadata_engine = MetadataEngine()
     intelligence_engine = IntelligenceEngine()
+    story_builder = BookStoryBuilder()
+    story_formatter = StoryFormatter()
     writer = ExcelWriter("sample_data/ASP Library Catalog Project.xlsx")
     writer.write_headers()
 
@@ -30,8 +35,20 @@ def main():
 
         metadata = metadata_engine.lookup(book.isbn)
 
-        recommendation = intelligence_engine.analyze(book, metadata)
-        writer.write_recommendation(row, recommendation)
+        profile = intelligence_engine.build_book_profile(
+            book,
+            metadata,
+        )
+
+        recommendation = intelligence_engine.analyze(
+            book,
+            metadata,
+        )
+
+        writer.write_recommendation(
+            row,
+            recommendation,
+        )
 
         print(f"Open Library  : {metadata.title}")
         print(f"Language      : {metadata.language}")
@@ -41,6 +58,10 @@ def main():
         print(f"Subjects      : {metadata.subjects}")
         print(f"Authors       : {', '.join(metadata.authors)}")
         print("*** INTELLIGENCE ENGINE RAN ***")
+
+        story = story_builder.build(profile)
+        print()
+        print(story_formatter.format(story))
 
         print(
             f"Suggested Collection : "

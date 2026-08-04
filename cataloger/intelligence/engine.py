@@ -10,9 +10,6 @@ class IntelligenceEngine:
         self.enrichment = FakeEnrichmentService()
 
     def analyze(self, book, metadata):
-        """
-        Analyze a catalog record and return recommendations.
-        """
 
         recommendation = Recommendation()
 
@@ -25,14 +22,8 @@ class IntelligenceEngine:
         return recommendation
 
     def build_book_profile(self, book, metadata):
-        """
-        Build a Living Library BookProfile.
-        """
 
-        recommendation = self.analyze(
-            book,
-            metadata,
-        )
+        recommendation = self.analyze(book, metadata)
 
         profile = BookProfile()
 
@@ -45,7 +36,7 @@ class IntelligenceEngine:
         profile.isbn = book.isbn
 
         #
-        # Enrichment
+        # AI Enrichment
         #
 
         profile.summary = self.enrichment.generate_summary(
@@ -63,5 +54,41 @@ class IntelligenceEngine:
         #
 
         profile.collection = recommendation.collection_code
+
+        #
+        # Reader Experience
+        #
+
+        profile.why_this_book_matters = (
+            "This book helps readers discover meaningful ideas and experiences."
+        )
+
+        profile.conversation_starter = (
+            "What part of this story stayed with you the most?"
+        )
+
+        profile.library_tip = (
+            "Look for books nearby to discover similar stories."
+        )
+
+        #
+        # Accessibility
+        #
+
+        profile.available_languages = [
+            "English"
+        ]
+
+        profile.reading_levels = [
+            "Independent Reader"
+        ]
+
+        #
+        # Tutor Mode
+        #
+
+        profile.tutor_prompts = [
+            "Ask the reader why they think this story matters."
+        ]
 
         return profile
