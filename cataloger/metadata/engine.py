@@ -34,11 +34,16 @@ class MetadataEngine:
 
         for provider in self.providers:
 
-            metadata = provider.lookup(isbn)
+            try:
+                metadata = provider.lookup(isbn)
 
-            if metadata.title:
-                self.cache.save(metadata)
-                return metadata
+                if metadata and metadata.title:
+                    self.cache.save(metadata)
+                    return metadata
+
+            except Exception as e:
+                print(f"Warning: {provider.__class__.__name__} failed: {e}")
+                continue
 
         return MetadataRecord(
             isbn=isbn,
